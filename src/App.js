@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import Counter from "./Components/Counter/Counter";
+import CounterAdd from "./Components/CounterAdd/CounterAdd";
+import CounterDecrease from "./Components/CounterDeсrease/CounterDecrease";
+import Form from "./Components/form/Form";
 
 function App() {
-  return (
+    const [allCount,setAllCount] = useState(0)
+    const [resultForm, setResultForm] = useState([])
+    console.log(resultForm);
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div>
+            <CounterAdd allCount={allCount} changeCount={setAllCount}/>
+        </div>
+        <div>
+            <h1>
+                {allCount}
+            </h1>
+        </div>
+        <div>
+            <Form resultForm={resultForm} setResultForm={setResultForm}/>
+        </div>
     </div>
   );
 }
 
 export default App;
+
+/*
+выравнить счетчики чуть ниже страницы , а сверху общий счетчик
+одно поле с одной кнопкой добавить, а у всех других только уменьшить и каждый из счетчиков покрасить в определенный цвет*/
