@@ -1,0 +1,18 @@
+.mainContainer {
+    width: 900px;
+    border: 2px solid black;
+}
+
+.blockItem {
+    display: flex;
+    justify-content: space-around;
+}
+
+.item {
+    width: 300px;
+    text-align: center;
+}
+
+.blockItem:not(:last-child){
+    border-bottom: 2px solid black;
+}
