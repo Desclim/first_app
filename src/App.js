@@ -1,33 +1,34 @@
 import './App.css';
 import {useState} from "react";
-import Counter from "./Components/Counter/Counter";
 import CounterAdd from "./Components/CounterAdd/CounterAdd";
-import CounterDecrease from "./Components/CounterDeсrease/CounterDecrease";
 import Form from "./Components/form/Form";
+import TableMain from "./Components/tableMain/TableMain";
+import NavMenu from "./Components/NavMenu/NavMenu";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import FirstPages from "./Pages/FirstPages";
+import SecondPages from "./Pages/SecondPages";
 
 function App() {
     const [allCount,setAllCount] = useState(0)
     const [resultForm, setResultForm] = useState([])
     console.log(resultForm);
     return (
-    <div className="App">
-        <div>
-            <CounterAdd allCount={allCount} changeCount={setAllCount}/>
-        </div>
-        <div>
-            <h1>
-                {allCount}
-            </h1>
-        </div>
-        <div>
-            <Form resultForm={resultForm} setResultForm={setResultForm}/>
-        </div>
-    </div>
+        <BrowserRouter>
+            <div>
+                <NavMenu/>
+                    <div className='tableContainer'>
+                    <Routes>
+                        <Route path='/' element={<FirstPages allCount={allCount} setAllCount={setAllCount} resultForm={resultForm} setResultForm={setResultForm}/>}/>
+                        <Route path='/tableMinus' element={<TableMain resultForm={resultForm} setResultForm={setResultForm}/>}/>
+                        <Route path='/tablePlus' element={<SecondPages/>}/>
+                    </Routes>
+                    </div>
+            </div>
+
+        </BrowserRouter>
+
   );
 }
 
 export default App;
 
-/*
-выравнить счетчики чуть ниже страницы , а сверху общий счетчик
-одно поле с одной кнопкой добавить, а у всех других только уменьшить и каждый из счетчиков покрасить в определенный цвет*/
